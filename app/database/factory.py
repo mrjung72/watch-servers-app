@@ -4,6 +4,7 @@ from .mssql_adapter import MSSQLAdapter
 from .mysql_adapter import MySQLAdapter
 from .postgresql_adapter import PostgreSQLAdapter
 from .oracle_adapter import OracleAdapter
+from .tibero_adapter import TiberoAdapter
 
 
 class DatabaseFactory:
@@ -22,6 +23,8 @@ class DatabaseFactory:
             return PostgreSQLAdapter(config)
         elif normalized_type == 'oracle':
             return OracleAdapter(config)
+        elif normalized_type == 'tibero':
+            return TiberoAdapter(config)
         else:
             raise ValueError(f"Unsupported database type: {db_type}")
     
@@ -33,7 +36,8 @@ class DatabaseFactory:
             {"type": "mysql", "name": "MySQL", "port": 3306},
             {"type": "mariadb", "name": "MariaDB", "port": 3306},
             {"type": "postgresql", "name": "PostgreSQL", "port": 5432},
-            {"type": "oracle", "name": "Oracle Database", "port": 1521}
+            {"type": "oracle", "name": "Oracle Database", "port": 1521},
+            {"type": "tibero", "name": "Tibero", "port": 8629}
         ]
     
     @staticmethod

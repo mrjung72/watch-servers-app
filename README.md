@@ -51,6 +51,7 @@ Watch Servers는 데이터베이스 연결 확인, 텔넷 연결 확인, SQL 실
 | MariaDB | aiomysql | 3306 |
 | PostgreSQL | asyncpg | 5432 |
 | Oracle | oracledb | 1521 |
+| Tibero | cx_Oracle | 8629 |
 
 ## 프로젝트 구조
 

@@ -8,5 +8,6 @@ asyncpg==0.29.0
 aiomysql==0.2.0
 pymssql==2.3.1
 oracledb==2.5.1
+cx_Oracle==8.3.0
 pandas==2.2.3
 python-dotenv==1.0.1
