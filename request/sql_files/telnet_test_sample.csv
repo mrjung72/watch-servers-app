@@ -1,0 +1,9 @@
+server_ip,port,server_name
+192.168.1.100,8080,Web Server
+192.168.1.101,3306,MySQL Server
+192.168.1.102,5432,PostgreSQL Server
+192.168.1.103,1433,MSSQL Server
+192.168.1.104,8629,Tibero Server
+localhost,8000,Local API Server
+google.com,80,Google HTTP
+google.com,443,Google HTTPS

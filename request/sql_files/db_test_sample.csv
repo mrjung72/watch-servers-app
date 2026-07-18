@@ -1,0 +1,6 @@
+db_name,username,password,server_ip,port,db_type,select_sql,crud_test_table,crud_test_columns,crud_test_values
+test_mssql,sa,password123,192.168.1.100,1433,mssql,"SELECT TOP 3 * FROM users",users,"id,name","1,Test User"
+test_mysql,root,password123,192.168.1.101,3306,mysql,"SELECT * FROM users LIMIT 3",users,"id,name","1,Test User"
+test_postgres,postgres,password123,192.168.1.102,5432,postgresql,"SELECT * FROM users LIMIT 3",users,"id,name","1,Test User"
+test_oracle,system,password123,192.168.1.103,1521,oracle,"SELECT * FROM users WHERE ROWNUM <= 3",users,"id,name","1,Test User"
+test_tibero,system,password123,192.168.1.104,8629,tibero,"SELECT * FROM users WHERE ROWNUM <= 3",users,"id,name","1,Test User"
