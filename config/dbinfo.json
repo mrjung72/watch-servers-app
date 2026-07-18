@@ -1,0 +1,34 @@
+{
+  "sample_mssql": {
+    "type": "mssql",
+    "server": "localhost",
+    "port": 1433,
+    "database": "sample_db",
+    "user": "sa",
+    "password": "your_password"
+  },
+  "sample_mysql": {
+    "type": "mysql",
+    "server": "localhost",
+    "port": 3306,
+    "database": "sample_db",
+    "user": "root",
+    "password": "your_password"
+  },
+  "sample_postgresql": {
+    "type": "postgresql",
+    "server": "localhost",
+    "port": 5432,
+    "database": "sample_db",
+    "user": "postgres",
+    "password": "your_password"
+  },
+  "sample_oracle": {
+    "type": "oracle",
+    "server": "localhost",
+    "port": 1521,
+    "database": "ORCL",
+    "user": "system",
+    "password": "your_password"
+  }
+}
