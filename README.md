@@ -55,6 +55,68 @@ Watch Servers는 데이터베이스 연결 확인, 텔넷 연결 확인, SQL 실
 
 ## 프로젝트 구조
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+log/
+logs/
+*.log
+
+# Build / Distribution
+build/
+dist/
+release/
+*.spec~
+
+# PyInstaller
+*.manifest
+*.toc
+*.pyz
+*.pkg
+
+# Test / Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Cache
+.cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Project runtime outputs
+results/
+request/uploads/
+
 ```
 watch-servers/
 ├── main.py                          # FastAPI 메인 애플리케이션

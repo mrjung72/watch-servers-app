@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 $version = "1.0.0"
 if (Test-Path "app\config\settings.py") {
     $settingsContent = Get-Content "app\config\settings.py" -Raw
-    if ($settingsContent -match 'app_version\s*=\s*["\']([^"\']+)["\']') {
+    if ($settingsContent -match "app_version\s*=\s*['""]([^'""]+)['""]") {
         $version = $matches[1]
     }
 }
@@ -158,8 +158,8 @@ watch-servers.exe
 
 pause
 "@
-$runBatKr | Out-File "$releaseDir\실행하기.bat" -Encoding ascii
-Write-Host "Created 실행하기.bat (Korean)" -ForegroundColor Green
+$runBatKr | Out-File "$releaseDir\run_kr.bat" -Encoding ascii
+Write-Host "Created run_kr.bat (Korean)" -ForegroundColor Green
 
 Write-Host ""
 

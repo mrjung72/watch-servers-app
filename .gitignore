@@ -1,0 +1,75 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# PyInstaller
+*.spec
+build/
+dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+log/
+*.log
+
+# Results
+results/
+*.csv
+*.xlsx
+*.xls
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Config (sensitive data)
+config/dbinfo.json
+
+# Request files (user uploaded)
+request/sql_files/*
+!request/sql_files/*.csv
+!request/sql_files/*.sql
+
+# Release
+release/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
