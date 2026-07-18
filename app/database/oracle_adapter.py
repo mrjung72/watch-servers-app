@@ -119,7 +119,8 @@ class OracleAdapter(BaseDatabase):
             
             if len(columns) == len(values):
                 # INSERT 쿼리 생성 (Oracle은 :param 형식)
-                insert_sql = f"INSERT INTO {table} ({', '.join(columns)}) VALUES ({', '.join([f':{c}' for c in columns])})"
+                param_placeholders = [f':{c}' for c in columns]
+                insert_sql = f"INSERT INTO {table} ({', '.join(columns)}) VALUES ({', '.join(param_placeholders)})"
                 permissions["insert_query"] = insert_sql
                 
                 try:

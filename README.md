@@ -51,71 +51,9 @@ Watch Servers는 데이터베이스 연결 확인, 텔넷 연결 확인, SQL 실
 | MariaDB | aiomysql | 3306 |
 | PostgreSQL | asyncpg | 5432 |
 | Oracle | oracledb | 1521 |
-| Tibero | cx_Oracle | 8629 |
+| Tibero | oracledb | 8629 |
 
 ## 프로젝트 구조
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.pyo
-*.pyd
-
-# Virtual environments
-.venv/
-venv/
-env/
-ENV/
-
-# Environment files
-.env
-.env.*
-!.env.example
-
-# IDE / Editor
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Logs
-log/
-logs/
-*.log
-
-# Build / Distribution
-build/
-dist/
-release/
-*.spec~
-
-# PyInstaller
-*.manifest
-*.toc
-*.pyz
-*.pkg
-
-# Test / Coverage
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-.nox/
-
-# Cache
-.cache/
-.mypy_cache/
-.ruff_cache/
-
-# OS files
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Project runtime outputs
-results/
-request/uploads/
 
 ```
 watch-servers/
@@ -139,7 +77,8 @@ watch-servers/
 │   │   ├── mssql_adapter.py        # MSSQL 어댑터
 │   │   ├── mysql_adapter.py        # MySQL 어댑터
 │   │   ├── postgresql_adapter.py   # PostgreSQL 어댑터
-│   │   └── oracle_adapter.py       # Oracle 어댑터
+│   │   ├── oracle_adapter.py       # Oracle 어댑터
+│   │   └── tibero_adapter.py       # Tibero 어댑터
 │   ├── models/
 │   │   └── schemas.py              # Pydantic 모델
 │   └── services/

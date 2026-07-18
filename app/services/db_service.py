@@ -101,7 +101,8 @@ class DBService:
         if db_type.lower() == 'postgresql':
             insert_sql = f"INSERT INTO {crud_test_table} ({', '.join(columns)}) VALUES ({', '.join([f'${i+1}' for i in range(len(values))])})"
         else:
-            insert_sql = f"INSERT INTO {crud_test_table} ({', '.join(columns)}) VALUES ({', '.join([f\"'{v}'\" for v in values])})"
+            quoted_values = [f"'{v}'" for v in values]
+            insert_sql = f"INSERT INTO {crud_test_table} ({', '.join(columns)}) VALUES ({', '.join(quoted_values)})"
         
         # DELETE SQL 생성
         delete_sql = f"DELETE FROM {crud_test_table} WHERE {columns[0]} = '{values[0]}'"

@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 $version = "1.0.0"
 if (Test-Path "app\config\settings.py") {
     $settingsContent = Get-Content "app\config\settings.py" -Raw
-    if ($settingsContent -match "app_version\s*=\s*['""]([^'""]+)['""]") {
+    if ($settingsContent -match "app_version.*?[:\s]*=\s*['""]([^'""]+)['""]") {
         $version = $matches[1]
     }
 }
@@ -55,6 +55,11 @@ Write-Host "====================================================================
 Write-Host "  Building executable with PyInstaller..." -ForegroundColor Cyan
 Write-Host "================================================================================" -ForegroundColor Cyan
 
+# Update spec file with versioned executable name
+$specContent = Get-Content "watch-servers.spec" -Raw
+$specContent = $specContent -replace "name='watch-servers(-v[\d.]+)?'", "name='watch-servers-v$version'"
+$specContent | Out-File "watch-servers.spec" -Encoding utf8
+
 try {
     pyinstaller watch-servers.spec --clean
     if ($LASTEXITCODE -ne 0) {
@@ -88,11 +93,12 @@ Write-Host "  Copying files..." -ForegroundColor Cyan
 Write-Host "================================================================================" -ForegroundColor Cyan
 
 # Copy executable
-if (Test-Path "dist\watch-servers.exe") {
-    Write-Host "Copying watch-servers.exe..." -ForegroundColor Yellow
-    Copy-Item "dist\watch-servers.exe" -Destination "$releaseDir\watch-servers.exe"
+$exeName = "watch-servers-v$version.exe"
+if (Test-Path "dist\$exeName") {
+    Write-Host "Copying $exeName..." -ForegroundColor Yellow
+    Copy-Item "dist\$exeName" -Destination "$releaseDir\$exeName"
 } else {
-    Write-Host "ERROR: watch-servers.exe not found in dist directory" -ForegroundColor Red
+    Write-Host "ERROR: $exeName not found in dist directory" -ForegroundColor Red
     exit 1
 }
 
@@ -141,7 +147,7 @@ $runBat = @"
 echo Starting Watch-Servers...
 echo.
 
-watch-servers.exe
+watch-servers-v$version.exe
 
 pause
 "@
@@ -154,7 +160,7 @@ $runBatKr = @"
 echo Watch-Servers 시작 중...
 echo.
 
-watch-servers.exe
+watch-servers-v$version.exe
 
 pause
 "@
@@ -187,9 +193,9 @@ Watch-Servers v$version Release Package
 Build Date: $(Get-Date -Format "yyyy-MM-dd HH:mm:ss")
 
 Included Files:
-- watch-servers.exe (Main executable file)
+- watch-servers-v$version.exe (Main executable file)
 - run.bat (Launcher script - English)
-- 실행하기.bat (Launcher script - Korean)
+- run_kr.bat (Launcher script - Korean)
 - config/ (Database configuration directory)
   - dbinfo.json (Database connection settings)
 - request/sql_files/ (Sample test files)
@@ -204,7 +210,7 @@ Included Files:
 Usage:
 1. Edit config/dbinfo.json with your database connection details
 2. (Optional) Edit .env file to configure application settings
-3. Run run.bat (English) or 실행하기.bat (Korean) to start the server
+3. Run run.bat (English) or run_kr.bat (Korean) to start the server
 4. Access API documentation at http://localhost:8000/docs
 
 Features:

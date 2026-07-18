@@ -14,11 +14,11 @@ SQL_FILES_DIR = REQUEST_DIR / "sql_files"
 
 class Settings(BaseSettings):
     app_name: str = "Watch Servers"
-    app_version: str = "1.0.0"
+    app_version: str = "1.0.2"
     debug: bool = True
     
     # 서버 설정
-    host: str = "0.0.0.0"
+    host: str = "127.0.0.1"
     port: int = 8000
     
     # DB 설정 파일 경로

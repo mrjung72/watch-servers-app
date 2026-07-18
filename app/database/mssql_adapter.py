@@ -120,7 +120,8 @@ class MSSQLAdapter(BaseDatabase):
             
             if len(columns) == len(values):
                 # INSERT 쿼리 생성
-                insert_sql = f"INSERT INTO {table} ({', '.join(columns)}) VALUES ({', '.join([f"'{v}'" for v in values])})"
+                quoted_values = [f"'{v}'" for v in values]
+                insert_sql = f"INSERT INTO {table} ({', '.join(columns)}) VALUES ({', '.join(quoted_values)})"
                 permissions["insert_query"] = insert_sql
                 
                 try:

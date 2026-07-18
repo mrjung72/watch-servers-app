@@ -1,5 +1,5 @@
 from typing import Dict, Any, Optional, List
-import cx_Oracle
+import oracledb
 import asyncio
 from .base import BaseDatabase
 
@@ -12,18 +12,14 @@ class TiberoAdapter(BaseDatabase):
         loop = asyncio.get_event_loop()
         
         # Tibero 연결 설정 (Oracle 호환 DSN 형식)
-        dsn = cx_Oracle.makedsn(
-            self.config.get('server'),
-            self.config.get('port', 8629),
-            service_name=self.config.get('database')
-        )
+        dsn = f"{self.config.get('server')}:{self.config.get('port', 8629)}/{self.config.get('database')}"
         
         self.connection = await loop.run_in_executor(
             None,
-            cx_Oracle.connect,
-            self.config.get('user'),
-            self.config.get('password'),
-            dsn
+            oracledb.connect,
+            user=self.config.get('user'),
+            password=self.config.get('password'),
+            dsn=dsn
         )
     
     async def disconnect(self):
@@ -123,7 +119,8 @@ class TiberoAdapter(BaseDatabase):
             
             if len(columns) == len(values):
                 # INSERT 쿼리 생성 (Tibero는 :param 형식)
-                insert_sql = f"INSERT INTO {table} ({', '.join(columns)}) VALUES ({', '.join([f':{c}' for c in columns])})"
+                param_placeholders = [f':{c}' for c in columns]
+                insert_sql = f"INSERT INTO {table} ({', '.join(columns)}) VALUES ({', '.join(param_placeholders)})"
                 permissions["insert_query"] = insert_sql
                 
                 try:

@@ -1,14 +1,14 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from app.config.settings import settings
+from app.config.settings import settings, RESULTS_DIR, LOG_DIR, SQL_FILES_DIR
 import uvicorn
 import os
 
 # 디렉토리 생성
-os.makedirs(settings.RESULTS_DIR, exist_ok=True)
-os.makedirs(settings.LOG_DIR, exist_ok=True)
-os.makedirs(settings.SQL_FILES_DIR, exist_ok=True)
+os.makedirs(RESULTS_DIR, exist_ok=True)
+os.makedirs(LOG_DIR, exist_ok=True)
+os.makedirs(SQL_FILES_DIR, exist_ok=True)
 
 app = FastAPI(
     title=settings.app_name,

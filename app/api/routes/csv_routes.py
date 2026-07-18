@@ -165,7 +165,8 @@ async def execute_csv_query_batch(db_name: str, csv_file: UploadFile = File(...)
                                 val = ''
                             val_str = str(val).replace('\n', ' ').replace('\r', ' ')
                             if ',' in val_str or '"' in val_str:
-                                val_str = f'"{val_str.replace(\'"\', \'\'\')}"'
+                                escaped_val = val_str.replace('"', '""')
+                                val_str = f'"{escaped_val}"'
                             values.append(val_str)
                         csv_content += ','.join(values) + '\n'
                     
